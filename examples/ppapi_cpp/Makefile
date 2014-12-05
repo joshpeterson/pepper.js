@@ -34,6 +34,9 @@ TARGET=ppapi_cpp
 AT_LEAST_33:=$(shell $(GETOS) --check-version=33 2>&1)
 AT_LEAST_34:=$(shell $(GETOS) --check-version=34 2>&1)
 AT_LEAST_35:=$(shell $(GETOS) --check-version=35 2>&1)
+AT_LEAST_36:=$(shell $(GETOS) --check-version=36 2>&1)
+AT_LEAST_37:=$(shell $(GETOS) --check-version=37 2>&1)
+AT_LEAST_38:=$(shell $(GETOS) --check-version=38 2>&1)
 
 SOURCES = \
   array_output.cc \
@@ -75,7 +78,6 @@ SOURCES = \
   scriptable_object_deprecated.cc \
   selection_dev.cc \
   simple_thread.cc \
-  socket_dev.cc \
   tcp_socket.cc \
   text_input_controller.cc \
   truetype_font_dev.cc \
@@ -107,9 +109,7 @@ endif
 ifeq ($(AT_LEAST_34),)
 # 34 and up
 SOURCES += \
-  alarms_dev.cc \
   media_stream_video_track.cc \
-  string_wrapper_dev.cc \
   video_frame.cc \
 
 else
@@ -134,6 +134,34 @@ SOURCES += \
   graphics_2d_dev.cc \
   ime_input_event_dev.cc \
   scrollbar_dev.cc \
+  text_input_dev.cc \
+  url_util_dev.cc \
+  video_capture_client_dev.cc \
+  video_capture_dev.cc \
+  video_decoder_client_dev.cc \
+  video_decoder_dev.cc \
+  widget_client_dev.cc \
+  widget_dev.cc \
+
+endif
+
+ifeq ($(AT_LEAST_36),)
+# 36 and up
+
+else
+# Before 36
+SOURCES += \
+  alarms_dev.cc \
+  audio_input_dev.cc \
+  buffer_dev.cc \
+  crypto_dev.cc \
+  device_ref_dev.cc \
+  find_dev.cc \
+  graphics_2d_dev.cc \
+  ime_input_event_dev.cc \
+  scrollbar_dev.cc \
+  socket_dev.cc \
+  string_wrapper_dev.cc \
   text_input_dev.cc \
   url_util_dev.cc \
   video_capture_client_dev.cc \
