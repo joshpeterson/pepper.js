@@ -35,8 +35,8 @@ AT_LEAST_33:=$(shell $(GETOS) --check-version=33 2>&1)
 AT_LEAST_34:=$(shell $(GETOS) --check-version=34 2>&1)
 AT_LEAST_35:=$(shell $(GETOS) --check-version=35 2>&1)
 AT_LEAST_36:=$(shell $(GETOS) --check-version=36 2>&1)
-AT_LEAST_37:=$(shell $(GETOS) --check-version=37 2>&1)
-AT_LEAST_38:=$(shell $(GETOS) --check-version=38 2>&1)
+# Versions between 36 and 47 have not been tested
+AT_LEAST_47:=$(shell $(GETOS) --check-version=47 2>&1)
 
 SOURCES = \
   array_output.cc \
@@ -76,7 +76,6 @@ SOURCES = \
   rect.cc \
   resource.cc \
   scriptable_object_deprecated.cc \
-  selection_dev.cc \
   simple_thread.cc \
   tcp_socket.cc \
   text_input_controller.cc \
@@ -93,7 +92,6 @@ SOURCES = \
   view_dev.cc \
   websocket.cc \
   websocket_api.cc \
-  zoom_dev.cc \
 
 ifeq ($(AT_LEAST_33),)
 # 33 and up
@@ -170,6 +168,27 @@ SOURCES += \
   video_decoder_dev.cc \
   widget_client_dev.cc \
   widget_dev.cc \
+
+endif
+
+ifeq ($(AT_LEAST_47),)
+# 47 and up
+SOURCES += \
+  audio_buffer.cc \
+  audio_encoder.cc \
+  compositor.cc \
+  compositor_layer.cc \
+  media_stream_audio_track.cc \
+  media_stream_video_track.cc \
+  video_decoder.cc \
+  video_encoder.cc \
+  video_frame.cc \
+  
+else
+# Before 47
+SOURCES += \
+  selection_dev.cc \
+  zoom_dev.cc \
 
 endif
 

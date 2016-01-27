@@ -29,8 +29,8 @@ EM_LIB?="$(EMSCRIPTEN)/emar"
 endif
 
 # Architecture-specific flags
-EM_CFLAGS?=-DNACL_ARCH=x86_32 -Wno-warn-absolute-paths
-EM_CXXFLAGS?=-DNACL_ARCH=x86_32 -Wno-warn-absolute-paths
+EM_CFLAGS?=-DNACL_ARCH=x86_32
+EM_CXXFLAGS?=-DNACL_ARCH=x86_32
 
 NACL_CFLAGS?=-Wno-long-long -Werror
 NACL_CXXFLAGS?=-Wno-long-long -Werror
